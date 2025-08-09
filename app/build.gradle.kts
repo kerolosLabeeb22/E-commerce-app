@@ -55,6 +55,10 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.dagger.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    //bottomNavigation
+    implementation ("androidx.compose.material:material:1.6.8")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -38,6 +38,10 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.dagger.hilt.android.compiler)
+    implementation(libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
