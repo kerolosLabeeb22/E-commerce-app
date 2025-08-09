@@ -103,7 +103,7 @@ fun ScreenContent(
     navController: NavHostController
 ) {
     when (selectedIndex) {
-        1 -> HomeScreenContent(navController = navController)
+        0 -> HomeScreenContent(navController = navController)
     }
 }
 

@@ -5,6 +5,7 @@ plugins {
     kotlin("plugin.serialization") version "2.0.21"
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -59,6 +60,19 @@ dependencies {
 
     //bottomNavigation
     implementation ("androidx.compose.material:material:1.6.8")
+    //firebase
+    implementation(libs.firebase.database)
+
+    implementation(libs.coil.compose)
+    implementation(libs.accompanist.pager.indicators)
+    implementation(libs.accompanist.pager)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.glide)
+    implementation(libs.gson)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.constraintlayout)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
