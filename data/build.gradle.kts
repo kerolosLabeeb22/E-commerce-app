@@ -43,6 +43,9 @@ dependencies {
     implementation(libs.logging.interceptor)
 
 
+    //firebase
+    implementation(libs.firebase.database)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

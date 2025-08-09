@@ -39,6 +39,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.dagger.hilt.android.compiler)
 
+    //firebase
+    implementation(libs.firebase.database)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
