@@ -1,11 +1,11 @@
 package com.example.data.di
 
 
-import com.example.data.dataSource.remote.AuthOnlineDataSourceImpl
-import com.example.data.repository.auth.AuthRepositoryImpl
-import com.example.data.services.AuthService
-import com.example.domain.repository.AuthOnlineDataSource
-import com.example.domain.repository.AuthRepository
+import com.example.data.dataSource.remote.AppOnlineDataSourceImpl
+import com.example.data.repository.AppRepositoryImpl
+import com.example.data.services.ApiService
+import com.example.domain.repository.AppOnlineDataSource
+import com.example.domain.repository.AppRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,15 +18,16 @@ object RepositoriesModule {
 
     @Singleton
     @Provides
-    fun provideAuthOnlineDataSource(AuthService: AuthService): AuthOnlineDataSource {
-        return AuthOnlineDataSourceImpl(AuthService)
+    fun provideAppOnlineDataSource(apiService: ApiService): AppOnlineDataSource {
+        return AppOnlineDataSourceImpl(apiService)
     }
 
     @Singleton
     @Provides
-    fun provideAuthRepository(onlineDataSource: AuthOnlineDataSource): AuthRepository{
-        return AuthRepositoryImpl(onlineDataSource)
+    fun provideAppRepository(onlineDataSource: AppOnlineDataSource): AppRepository {
+        return AppRepositoryImpl(onlineDataSource)
 
     }
+
 
 }

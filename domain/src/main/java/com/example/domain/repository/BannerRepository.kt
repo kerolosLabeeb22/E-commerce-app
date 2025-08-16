@@ -18,7 +18,7 @@ class BannerRepository @Inject constructor(
 ) {
 
     fun loadBanner(): LiveData<MutableList<SliderModel>> {
-        // تأكد من التهيئة
+
         if (FirebaseApp.getApps(context).isEmpty()) {
             FirebaseApp.initializeApp(context)
         }

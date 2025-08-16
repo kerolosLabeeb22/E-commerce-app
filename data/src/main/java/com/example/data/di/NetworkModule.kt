@@ -2,7 +2,7 @@ package com.example.data.di
 
 
 import android.util.Log
-import com.example.data.services.AuthService
+import com.example.data.services.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,16 +19,17 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor{
-        return HttpLoggingInterceptor{
-            Log.e("TAG", it )
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor {
+            Log.e("TAG", it)
         }.apply {
-            level= HttpLoggingInterceptor.Level.BODY
+            level = HttpLoggingInterceptor.Level.BODY
         }
     }
+
     @Singleton
     @Provides
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient{
+    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .build()
@@ -37,9 +38,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideGsonConverterFactory(): GsonConverterFactory{
+    fun provideGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }
+
     @Singleton
     @Provides
     fun provideRetrofit(
@@ -55,7 +57,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAuthService(retrofit: Retrofit): AuthService{
-        return retrofit.create(AuthService::class.java)
+    fun provideApiService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 }
