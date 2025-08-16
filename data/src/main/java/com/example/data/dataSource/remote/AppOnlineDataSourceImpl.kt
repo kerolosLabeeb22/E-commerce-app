@@ -14,6 +14,7 @@ import com.example.domain.entity.AuthResponseEntity
 import com.example.domain.entity.CategoryDataItemEntity
 import com.example.domain.entity.ProductDataItemEntity
 import com.example.domain.entity.RemoveFromWishlistResponseEntity
+import com.example.domain.entity.SubCategoryDataItemEntity
 import com.example.domain.repository.AppOnlineDataSource
 import javax.inject.Inject
 
@@ -71,5 +72,11 @@ class AppOnlineDataSourceImpl @Inject constructor(
         token: String
     ): AddToCartResponseEntity {
         return apiService.addToCart(request, token).body()!!.toEntity()
+    }
+
+    override suspend fun getSubCategory(categoryId: String): List<SubCategoryDataItemEntity> {
+        return apiService.getSubCategory(categoryId).body()?.data?.map {
+            it!!.toEntity()
+        } ?: emptyList()
     }
 }
