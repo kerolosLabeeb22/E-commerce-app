@@ -1,9 +1,13 @@
 package com.example.domain.repository
 
 import com.example.domain.Utils.ApiResult
+import com.example.domain.entity.AddToCartRequestEntity
+import com.example.domain.entity.AddToCartResponseEntity
+import com.example.domain.entity.AddToWishlistResponseEntity
 import com.example.domain.entity.AuthResponseEntity
 import com.example.domain.entity.CategoryDataItemEntity
 import com.example.domain.entity.ProductDataItemEntity
+import com.example.domain.entity.RemoveFromWishlistResponseEntity
 
 interface AppRepository {
 
@@ -19,6 +23,19 @@ interface AppRepository {
     suspend fun getCategories(): List<CategoryDataItemEntity>
 
     suspend fun getProducts(): List<ProductDataItemEntity>
+    suspend fun addToWishlist(productId: String, token: String): AddToWishlistResponseEntity
+
+    suspend fun removeFromWishlist(
+        productId: String,
+        token: String
+    ): RemoveFromWishlistResponseEntity
+
+    suspend fun addToCart(
+        request: AddToCartRequestEntity,
+        token: String
+    ): AddToCartResponseEntity
+
+
 }
 
 interface AppOnlineDataSource {
@@ -34,5 +51,18 @@ interface AppOnlineDataSource {
     suspend fun getCategories(): List<CategoryDataItemEntity>
 
     suspend fun getProducts(): List<ProductDataItemEntity>
+
+    suspend fun addToWishlist(productId: String, token: String): AddToWishlistResponseEntity
+
+    suspend fun removeFromWishlist(
+        productId: String,
+        token: String
+    ): RemoveFromWishlistResponseEntity
+
+    suspend fun addToCart(
+        request: AddToCartRequestEntity,
+        token: String
+    ): AddToCartResponseEntity
+
 
 }

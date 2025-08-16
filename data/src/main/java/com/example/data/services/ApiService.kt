@@ -1,14 +1,24 @@
 package com.example.data.services
 
+import com.example.data.Constant
+import com.example.data.api.model.AddToCartResponse
 import com.example.data.models.auth.AuthResponseModel
 import com.example.data.models.cateogry.CategoryResponse
 import com.example.data.models.product.ProductsResponse
+import com.example.data.models.wishlist.AddToWishlistRequest
+import com.example.data.models.wishlist.AddToWishlistResponse
+import com.example.data.models.wishlist.RemoveFromWishlistResponse
+import com.example.domain.entity.AddToCartRequestEntity
 import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.DELETE
 
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -41,4 +51,22 @@ interface ApiService {
 
     @GET("products")
     suspend fun getProduct(): Response<ProductsResponse>
+
+    @POST("wishlist")
+    suspend fun addToWishlist(
+        @Body addToWishlistRequest: AddToWishlistRequest,
+        @Header("token") token: String = Constant.TOKEN
+    ): Response<AddToWishlistResponse>
+
+    @DELETE("wishlist/{productId}")
+    suspend fun removeFromWishlist(
+        @Path("productId") productId: String,
+        @Header("token") token: String
+    ): Response<RemoveFromWishlistResponse>
+
+    @POST("cart")
+    suspend fun addToCart(
+        @Body request: AddToCartRequestEntity,
+        @Header("token") token: String
+    ): Response<AddToCartResponse>
 }

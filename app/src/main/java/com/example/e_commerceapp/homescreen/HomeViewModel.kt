@@ -1,13 +1,18 @@
 package com.example.e_commerceapp.homescreen
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.entity.AddToCartRequestEntity
 import com.example.domain.entity.CategoryDataItemEntity
 import com.example.domain.entity.ProductDataItemEntity
+import com.example.domain.usecase.AddToCartUseCase
+import com.example.domain.usecase.AddToWishlistUseCase
 import com.example.domain.usecase.GetCategoryUseCase
 import com.example.domain.usecase.GetProductUseCase
+import com.example.domain.usecase.RemoveFromWishlistUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +21,10 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     val getCategoryUseCase: GetCategoryUseCase,
-    val getProductUseCase: GetProductUseCase
+    val getProductUseCase: GetProductUseCase,
+    private val addToWishlistUseCase: AddToWishlistUseCase,
+    private val removeFromWishlistUseCase: RemoveFromWishlistUseCase,
+    private val addToCartUseCase: AddToCartUseCase
 ) : ViewModel() {
 
     val categoryList = mutableStateListOf<CategoryDataItemEntity>()
@@ -93,5 +101,56 @@ class HomeViewModel @Inject constructor(
 
             }
         }
+    }
+
+
+    fun addToWishlist(
+        productId: String, token: String
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+
+
+                val response = addToWishlistUseCase.invoke(productId, token)
+                Log.d("Wishlist", "Added: ${response.data?.size} items in wishlist")
+            } catch (e: Exception) {
+                errorState.value = e.message ?: ""
+            }
+        }
+    }
+
+    fun removeFromWishlist(
+        productId: String, token: String
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+
+
+                val response = removeFromWishlistUseCase.invoke(productId, token)
+                Log.d("Wishlist", "Added: ${response.data?.size} items in wishlist")
+
+
+            } catch (e: Exception) {
+                errorState.value = e.message ?: ""
+            }
+        }
+    }
+
+    fun addToCart(
+        productId: String, token: String
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+
+                val request = AddToCartRequestEntity(productId)
+                val response = addToCartUseCase.invoke(request, token)
+                Log.d("Cart", "Added: ${response.data?.products?.size} items in cart")
+
+            } catch (e: Exception) {
+                errorState.value = e.message ?: ""
+            }
+        }
+
+
     }
 }

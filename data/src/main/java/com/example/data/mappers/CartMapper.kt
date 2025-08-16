@@ -1,11 +1,17 @@
 package com.example.data.mappers
 
+import com.example.data.api.model.AddToCartData
+import com.example.data.api.model.AddToCartProductsItem
+import com.example.data.api.model.AddToCartResponse
 import com.example.data.models.cart.CartBrand
 import com.example.data.models.cart.CartCategory
 import com.example.data.models.cart.CartData
 import com.example.data.models.cart.CartProductsItem
 import com.example.data.models.cart.CartResponse
 import com.example.data.models.cart.Product
+import com.example.domain.entity.AddToCartDataEntity
+import com.example.domain.entity.AddToCartProductsItemEntity
+import com.example.domain.entity.AddToCartResponseEntity
 import com.example.domain.entity.CartBrandEntity
 import com.example.domain.entity.CartCategoryEntity
 import com.example.domain.entity.CartDataEntity
@@ -39,4 +45,19 @@ fun CartCategory.toEntity(): CartCategoryEntity {
 
 fun CartBrand.toEntity(): CartBrandEntity {
     return CartBrandEntity(image, name, id, slug)
+}
+//----------------------------------------------------------
+// add to cart mapper
+fun AddToCartResponse.toEntity(): AddToCartResponseEntity {
+    return AddToCartResponseEntity(data?.toEntity(), numOfCartItems, cartId, message, status)
+}
+
+fun AddToCartData.toEntity(): AddToCartDataEntity {
+    return AddToCartDataEntity(cartOwner, createdAt, totalCartPrice, v, id, products?.map {
+        it?.toEntity()
+    }, updatedAt)
+}
+
+fun AddToCartProductsItem.toEntity(): AddToCartProductsItemEntity {
+    return AddToCartProductsItemEntity(product, price, count, id)
 }
