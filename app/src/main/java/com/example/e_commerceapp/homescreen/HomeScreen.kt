@@ -406,10 +406,10 @@ fun ProductItem(
                                 ).show()
 
                                 if (favoriteSelected) {
-                                    //viewModel.addToWishlist(productId.toString(), token)
+                                    viewModel.addToWishlist(productId.toString(), token)
                                     favoriteSelected = true
                                 } else {
-                                    //viewModel.removeFromWishlist(productId.toString(), token)
+                                    viewModel.removeFromWishlist(productId.toString(), token)
                                 }
 
                             },
@@ -481,7 +481,7 @@ fun ProductItem(
 
                     Toast.makeText(context, "Added to cart", Toast.LENGTH_SHORT).show()
 
-                    //viewModel.addToCart(productId = productId.toString(), token = token)
+                    viewModel.addToCart(productId = productId.toString(), token = token)
 
                 }) {
                     Icon(
