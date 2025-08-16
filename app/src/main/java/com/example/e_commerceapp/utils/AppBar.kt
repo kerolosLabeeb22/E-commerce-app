@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.e_commerceapp.R
+import com.example.e_commerceapp.destinations.CartDestination
 import com.example.e_commerceapp.ui.theme.blue
 import com.example.e_commerceapp.ui.theme.white
 
@@ -71,7 +72,7 @@ fun TopAppBarContent(
 
             IconButton(
                 onClick = {
-                    //navController.navigate(CartDestination)
+                    navController.navigate(CartDestination)
                 },
 
                 ) {
