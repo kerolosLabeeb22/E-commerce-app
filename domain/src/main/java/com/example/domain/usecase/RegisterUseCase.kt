@@ -2,11 +2,11 @@ package com.example.domain.usecase
 
 import com.example.domain.Utils.ApiResult
 import com.example.domain.entity.AuthResponseEntity
-import com.example.domain.repository.AuthRepository
+import com.example.domain.repository.AppRepository
 import javax.inject.Inject
 
 class RegisterUseCase @Inject constructor(
-    private val repository: AuthRepository
+    private val repository: AppRepository
 ) {
     suspend fun invoke(
         emil: String,
