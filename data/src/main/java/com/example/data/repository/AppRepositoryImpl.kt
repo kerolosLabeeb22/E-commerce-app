@@ -9,6 +9,7 @@ import com.example.domain.entity.CategoryDataItemEntity
 import com.example.domain.entity.ProductDataItemEntity
 import com.example.domain.entity.RemoveFromWishlistResponseEntity
 import com.example.domain.entity.SubCategoryDataItemEntity
+import com.example.domain.entity.WishDataItemEntity
 import com.example.domain.repository.AppOnlineDataSource
 import com.example.domain.repository.AppRepository
 import javax.inject.Inject
@@ -64,5 +65,9 @@ class AppRepositoryImpl @Inject constructor(
 
     override suspend fun getSubCategory(categoryId: String): List<SubCategoryDataItemEntity> {
         return onlineDataSource.getSubCategory(categoryId)
+    }
+
+    override suspend fun getWishlist(token: String): List<WishDataItemEntity> {
+        return onlineDataSource.getWishlist(token)
     }
 }

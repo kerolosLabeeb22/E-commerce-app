@@ -9,6 +9,7 @@ import com.example.domain.entity.CategoryDataItemEntity
 import com.example.domain.entity.ProductDataItemEntity
 import com.example.domain.entity.RemoveFromWishlistResponseEntity
 import com.example.domain.entity.SubCategoryDataItemEntity
+import com.example.domain.entity.WishDataItemEntity
 
 interface AppRepository {
 
@@ -37,6 +38,8 @@ interface AppRepository {
     ): AddToCartResponseEntity
 
     suspend fun getSubCategory(categoryId: String): List<SubCategoryDataItemEntity>
+
+    suspend fun getWishlist(token: String): List<WishDataItemEntity>
 
 
 }
@@ -68,5 +71,7 @@ interface AppOnlineDataSource {
     ): AddToCartResponseEntity
 
     suspend fun getSubCategory(categoryId: String): List<SubCategoryDataItemEntity>
+
+    suspend fun getWishlist(token: String): List<WishDataItemEntity>
 
 }

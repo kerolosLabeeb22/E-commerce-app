@@ -9,6 +9,7 @@ import com.example.data.models.product.ProductsResponse
 import com.example.data.models.wishlist.AddToWishlistRequest
 import com.example.data.models.wishlist.AddToWishlistResponse
 import com.example.data.models.wishlist.RemoveFromWishlistResponse
+import com.example.data.models.wishlist.WishlistResponse
 import com.example.domain.entity.AddToCartRequestEntity
 import retrofit2.Response
 import retrofit2.http.Body
@@ -75,6 +76,11 @@ interface ApiService {
     suspend fun getSubCategory(
         @Query("category") categoryId: String
     ): Response<SubCategoryResponse>
+
+    @GET("wishlist")
+    suspend fun getWishlist(
+        @Header("token") token: String = Constant.TOKEN
+    ): Response<WishlistResponse>
 
 
 }
