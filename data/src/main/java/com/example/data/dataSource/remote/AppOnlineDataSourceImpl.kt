@@ -11,6 +11,8 @@ import com.example.domain.entity.AddToCartRequestEntity
 import com.example.domain.entity.AddToCartResponseEntity
 import com.example.domain.entity.AddToWishlistResponseEntity
 import com.example.domain.entity.AuthResponseEntity
+import com.example.domain.entity.CartDataEntity
+import com.example.domain.entity.CartResponseEntity
 import com.example.domain.entity.CategoryDataItemEntity
 import com.example.domain.entity.ProductDataItemEntity
 import com.example.domain.entity.RemoveFromWishlistResponseEntity
@@ -85,6 +87,17 @@ class AppOnlineDataSourceImpl @Inject constructor(
         return apiService.getWishlist(token).body()?.data?.map {
             it!!.toEntity()
         } ?: emptyList()
+    }
+
+    override suspend fun getCart(token: String): CartDataEntity {
+        return apiService.getCart(token).body()?.cartData!!.toEntity()
+    }
+
+    override suspend fun removeFromCart(
+        productId: String,
+        token: String
+    ): CartResponseEntity {
+        return apiService.removeFromCart(productId, token).body()!!.toEntity()
     }
 
 }

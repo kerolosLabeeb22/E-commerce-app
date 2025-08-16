@@ -3,6 +3,7 @@ package com.example.data.services
 import com.example.data.Constant
 import com.example.data.api.model.AddToCartResponse
 import com.example.data.models.auth.AuthResponseModel
+import com.example.data.models.cart.CartResponse
 import com.example.data.models.cateogry.CategoryResponse
 import com.example.data.models.cateogry.SubCategoryResponse
 import com.example.data.models.product.ProductsResponse
@@ -82,5 +83,14 @@ interface ApiService {
         @Header("token") token: String = Constant.TOKEN
     ): Response<WishlistResponse>
 
+    @GET("cart")
+    suspend fun getCart(
+        @Header("token") token: String
+    ): Response<CartResponse>
 
+    @DELETE("cart")
+    suspend fun removeFromCart(
+        @Query("productId") productId: String,
+        @Header("token") token: String = Constant.TOKEN
+    ): Response<CartResponse>
 }

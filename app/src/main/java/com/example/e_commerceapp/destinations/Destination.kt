@@ -14,5 +14,8 @@ object MainDestination
 @Serializable
 object RegisterDestination
 
+@Serializable
+object CartDestination
+
 //@Serializable
 //object MainDestination

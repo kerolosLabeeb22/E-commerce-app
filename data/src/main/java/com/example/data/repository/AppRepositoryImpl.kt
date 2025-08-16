@@ -5,6 +5,8 @@ import com.example.domain.entity.AddToCartRequestEntity
 import com.example.domain.entity.AddToCartResponseEntity
 import com.example.domain.entity.AddToWishlistResponseEntity
 import com.example.domain.entity.AuthResponseEntity
+import com.example.domain.entity.CartDataEntity
+import com.example.domain.entity.CartResponseEntity
 import com.example.domain.entity.CategoryDataItemEntity
 import com.example.domain.entity.ProductDataItemEntity
 import com.example.domain.entity.RemoveFromWishlistResponseEntity
@@ -69,5 +71,16 @@ class AppRepositoryImpl @Inject constructor(
 
     override suspend fun getWishlist(token: String): List<WishDataItemEntity> {
         return onlineDataSource.getWishlist(token)
+    }
+
+    override suspend fun getCart(token: String): CartDataEntity {
+        return onlineDataSource.getCart(token)
+    }
+
+    override suspend fun removeFromCart(
+        productId: String,
+        token: String
+    ): CartResponseEntity {
+        return onlineDataSource.removeFromCart(productId, token)
     }
 }
