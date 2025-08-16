@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.e_commerceapp.R
+import com.example.e_commerceapp.categoryscreen.CategoryScreen
 import com.example.e_commerceapp.homescreen.HomeScreenContent
 import com.example.e_commerceapp.ui.theme.blue
 import com.example.e_commerceapp.ui.theme.white
@@ -104,6 +105,7 @@ fun ScreenContent(
 ) {
     when (selectedIndex) {
         0 -> HomeScreenContent(navController = navController)
+        1 -> CategoryScreen(navController = navController)
     }
 }
 

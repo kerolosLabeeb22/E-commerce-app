@@ -8,6 +8,7 @@ import com.example.domain.entity.AuthResponseEntity
 import com.example.domain.entity.CategoryDataItemEntity
 import com.example.domain.entity.ProductDataItemEntity
 import com.example.domain.entity.RemoveFromWishlistResponseEntity
+import com.example.domain.entity.SubCategoryDataItemEntity
 
 interface AppRepository {
 
@@ -34,6 +35,8 @@ interface AppRepository {
         request: AddToCartRequestEntity,
         token: String
     ): AddToCartResponseEntity
+
+    suspend fun getSubCategory(categoryId: String): List<SubCategoryDataItemEntity>
 
 
 }
@@ -64,5 +67,6 @@ interface AppOnlineDataSource {
         token: String
     ): AddToCartResponseEntity
 
+    suspend fun getSubCategory(categoryId: String): List<SubCategoryDataItemEntity>
 
 }

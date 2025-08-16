@@ -4,6 +4,7 @@ import com.example.data.Constant
 import com.example.data.api.model.AddToCartResponse
 import com.example.data.models.auth.AuthResponseModel
 import com.example.data.models.cateogry.CategoryResponse
+import com.example.data.models.cateogry.SubCategoryResponse
 import com.example.data.models.product.ProductsResponse
 import com.example.data.models.wishlist.AddToWishlistRequest
 import com.example.data.models.wishlist.AddToWishlistResponse
@@ -69,4 +70,11 @@ interface ApiService {
         @Body request: AddToCartRequestEntity,
         @Header("token") token: String
     ): Response<AddToCartResponse>
+
+    @GET("subcategories")
+    suspend fun getSubCategory(
+        @Query("category") categoryId: String
+    ): Response<SubCategoryResponse>
+
+
 }
